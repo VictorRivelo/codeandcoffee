@@ -1,0 +1,19 @@
+Considerando que a execução será nas pastas do seu computador
+
+Compilar
+gcc -Wall --ansi -D_POSIX_C_SOURCE=200809L run.c -c
+gcc -Wall --ansi -D_POSIX_C_SOURCE=200809L pipeline.c -c
+
+
+Teste
+gcc -Wall --ansi -D_POSIX_C_SOURCE=200809L teste.c run.c -o teste
+
+Bibliotecas 
+
+Biblioteca estática
+ar crs $(PREFIX)/usr/lib/libmylib.a run.o pipeline.o 
+
+Biblioteca dinâmica
+gcc -Wall --ansi -D_POSIX_C_SOURCE=200809L -fpic run.c -c
+gcc -Wall --ansi -D_POSIX_C_SOURCE=200809L -fpic pipeline.c -c
+gcc -shared -o $(PREFIX)/usr/lib/libmylib.so pipeline.o run.o
